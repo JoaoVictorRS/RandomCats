@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Cats</title>
+</head>
+
+<body>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <img id="catImage" alt="Imagem da API" style="max-width: 100%; height: auto;" />
+  </div>
+
+  <script>
+    async function fetchCatImage() {
+      try {
+        // URL da API Cataas para obter uma imagem aleatória de gato
+        const response = await fetch('https://cataas.com/cat');
+
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+          throw new Error('Erro ao buscar a imagem da API Cataas');
+        }
+
+        // Define o src da imagem diretamente com a URL da API
+        document.getElementById('catImage').src = 'https://cataas.com/cat?' + new Date().getTime(); // Adiciona um timestamp para evitar cache
+      } catch (error) {
+        alert('Erro:', error);
+      }
+    }
+
+    window.onload = fetchCatImage;
+  </script>
+
+</body>
+
+</html>
